@@ -1,6 +1,5 @@
 package OrderPlace;
 
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -32,21 +31,35 @@ public class OrderSunscreen {
         searchbox2.sendKeys(Keys.ENTER);
 
         //Check if  product exist after search
-
         String expProduct = "Aqualogica Radiance+ Dewy Sunscreen";
         List<WebElement> proList = driver.findElements(By.xpath("//h2[@tabindex='0']"));
 
+        boolean productFound = false;
         for (WebElement eachitem : proList) {
             if (eachitem.getText().equals(expProduct)) {
                 System.out.println(eachitem.getText());
-                driver.findElement(By.linkText("Add To Cart")).click();
+                eachitem.click();
+                driver.findElement(By.xpath("//button[normalize-space()=\"Add to Cart\"]")).click();
+                productFound = true;
+
+                //Check if added with assertion
+                String expAssert = "Item added to cart.";
+                WebElement assertBox = driver.findElement(By.xpath("//div[@class=\"message-text\"]"));
+                String actAssert = assertBox. getText();
+
+                if(expAssert.equals(actAssert))
+                {
+                    System.out.println("Test Passed : Item is added to cart");
+                }
+
                 break;
             }
-            else {
+        }
+
+            if(!productFound) {
                 System.out.println("Product Does not exist");
             }
 
-
         }
     }
-}
+
