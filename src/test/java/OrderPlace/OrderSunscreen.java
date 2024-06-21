@@ -8,10 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.List;
 
 public class OrderSunscreen {
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.foreveryng.com/");
@@ -25,9 +26,27 @@ public class OrderSunscreen {
         //search for product
         WebElement searchbox = driver.findElement(By.id("search"));
         searchbox.click();
-        WebElement searchbox2 = driver.findElement(By.xpath("//div[@class=\"autosearch_form_fields\"]"));
-//        searchbox2.sendKeys("Sunscreen");
-//        searchbox2.sendKeys(Keys.ENTER);
+        Thread.sleep(2000);
+        WebElement searchbox2 = driver.findElement(By.xpath("/html[1]/body[1]/app-root[1]/app-navbar[1]/header[1]/div[1]/div[1]/div[1]/div[1]/app-auto-search[1]/form[1]/div[1]/input[1]"));
+        searchbox2.sendKeys("Sunscreen");
+        searchbox2.sendKeys(Keys.ENTER);
 
+        //Check if  product exist after search
+
+        String expProduct = "Aqualogica Radiance+ Dewy Sunscreen";
+        List<WebElement> proList = driver.findElements(By.xpath("//h2[@tabindex='0']"));
+
+        for (WebElement eachitem : proList) {
+            if (eachitem.getText().equals(expProduct)) {
+                System.out.println(eachitem.getText());
+                driver.findElement(By.linkText("Add To Cart")).click();
+                break;
+            }
+            else {
+                System.out.println("Product Does not exist");
+            }
+
+
+        }
     }
 }
