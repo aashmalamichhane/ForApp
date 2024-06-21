@@ -1,4 +1,4 @@
-package OrderPlace;
+package testcases.OrderPlace;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -51,11 +51,9 @@ public class OrderSunscreen {
                 {
                     System.out.println("Test Passed : Item is added to cart");
                 }
-
                 break;
             }
         }
-
             if(!productFound) {
                 System.out.println("Product Does not exist");
             }

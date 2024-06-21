@@ -1,14 +1,21 @@
-package Login;
+package testcases.Logout;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.time.Duration;
 
-public class Login {
+public class Logout {
 
-    public static void  main (String args[]){
+    public static void main (String args[]) throws InterruptedException
+
+    //Login first
+    {
+//      Driver driver = new Driver();
+//        driver.Driver();
+//
+//        Login  L1 = new Login();
+//        L1.Login();
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.foreveryng.com/");
@@ -19,5 +26,8 @@ public class Login {
         driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("Test@123");
         driver.findElement(By.xpath("//button[normalize-space()=\"Login\"]")).click();
 
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//a//h2")).click();
+        driver.findElement(By.xpath("//span[normalize-space()=\"Log Out\"]")).click();
     }
 }
