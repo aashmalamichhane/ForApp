@@ -20,7 +20,9 @@ public class OrderSunscreen {
         driver.findElement(By.xpath("//a//h2")).click();
         driver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys("Test123@yopmail.com");
         driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("Test@123");
-        driver.findElement(By.xpath("//button[normalize-space()=\"Login\"]")).click();
+        WebElement lgnButton =  driver.findElement(By.xpath("//button[normalize-space()='Login']"));
+        lgnButton.sendKeys(Keys.ENTER);
+//
 
         //search for product
         WebElement searchbox = driver.findElement(By.id("search"));
