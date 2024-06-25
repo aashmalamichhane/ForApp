@@ -11,12 +11,6 @@ public class Logout {
 
     //Login first
     {
-//      Driver driver = new Driver();
-//        driver.Driver();
-//
-//        Login  L1 = new Login();
-//        L1.Login();
-
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.foreveryng.com/");
         driver.manage().window().maximize();

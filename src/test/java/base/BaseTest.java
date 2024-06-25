@@ -3,6 +3,7 @@ package base;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,10 +19,11 @@ public class BaseTest {
 
         if(driver==null)
         {
-            InputStream file = getClass().getClassLoader().getResourceAsStream("configfiles/config.properties");
-//           FileReader fr = new FileReader("C:\\Users\\aashma.lamichhane\\Desktop\\Automation_Self\\ForeveryngApp\\src\\test\\resourcess\\configfiles\\config.properties");
-//            FileReader fr = new FileReader(file);
-            prop.load(file);
+//            InputStream file = getClass().getClassLoader().getResourceAsStream("configfiles/config.properties");
+//            prop.load(file);
+
+            FileReader fr = new FileReader(System.getProperty("user.dir")+"\\src\\test\\resources\\configfiles/config.properties");
+            prop.load(fr);
         }
 
         String browserName = prop.getProperty("browser");
@@ -31,6 +33,8 @@ public class BaseTest {
              driver = new ChromeDriver();
              driver.get(prop.getProperty("testurl"));
              driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 
         }
 
@@ -39,6 +43,8 @@ public class BaseTest {
             driver = new FirefoxDriver();
             driver.get(prop.getProperty("testurl"));
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 
         }
 
@@ -47,6 +53,8 @@ public class BaseTest {
             driver = new EdgeDriver();
             driver.get(prop.getProperty("testurl"));
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
 
         }
 
