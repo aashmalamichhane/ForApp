@@ -7,7 +7,7 @@ import java.util.Properties;
 public class ReadPropertyFile {
 
     public static void main(String args[]) throws IOException {
-        FileReader fro = new FileReader("C:\\Users\\aashma.lamichhane\\Desktop\\Automation_Self\\ForeveryngApp\\src\\test\\resourcess\\configfiles\\config.properties");
+        FileReader fro = new File(System.getProperty("user.dir")+"\\src\\test\\resourcess\\configfiles\\config.properties");
         Properties p = new Properties();
         p.load(fro);
 
